@@ -1,29 +1,41 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>⚡ TELECOM MAP</title>
-  <meta name="description" content="تطبيق إدارة شبكة الاتصالات - MSAN, SR, PC" />
+  <title>Msan PTN MAROC TELECOM</title>
+  <meta name="description" content="Application de gestion du réseau télécom - MSAN, SR, PC" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- Top Bar -->
   <div id="topbar">
-    <span id="logo">⚡ TELECOM MAP</span>
+    <span id="logo">
+      <img src="logo.png" alt=""></span>
+    <div id="hover-info"></div>
     <div id="search-area">
-      <input id="searchInput" placeholder="بحث عن MSAN أو constitution..." />
-      <button id="searchBtn">🔍</button>
+      <input id="searchInput" placeholder="Rechercher MSAN ou constitution..." autocomplete="off" />
+      <button id="searchBtn">👈🏽</button>
     </div>
-    <button id="createBtn">➕ إنشاء</button>
+    <button id="toolbarToggle">☰ Menu</button>
+  </div>
+
+  <!-- Toolbar -->
+  <div id="toolbar" class="hidden">
+    <div id="toolbarInner">
+      <button class="toolbar-btn toolbar-creation" onclick="openToolbarMenu('creation')">⚙️Option</button>
+      <button class="toolbar-btn toolbar-modification" onclick="openToolbarMenu('modification')"> Modification</button>
+      <button class="toolbar-btn toolbar-suppression" onclick="openToolbarMenu('suppression')">🗑️ Supprimer</button>
+      <button class="toolbar-close" onclick="toggleToolbar()">✕</button>
+    </div>
   </div>
 
   <!-- Map -->
   <div id="map"></div>
 
   <!-- Picking coords banner -->
-  <div id="pickBanner" class="hidden">📍 انقر على الخريطة لتحديد الإحداثيات</div>
+  <div id="pickBanner" class="hidden">Cliquez sur la carte pour sélectionner les coordonnées</div>
 
   <!-- Modal overlay -->
   <div id="modal" class="hidden">
@@ -35,7 +47,13 @@
     <div id="searchContent"></div>
   </div>
 
+  <!-- Port choice modal -->
+  <div id="portChoiceModal" class="hidden">
+    <div id="portChoiceContent"></div>
+  </div>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="google-sheets.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
